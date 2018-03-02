@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL2", "SDL2\SDL2.csproj", "{45CEC5E2-54FC-4418-BDC0-A23B458092E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL2Example", "SDL2Example\SDL2Example.csproj", "{1F1260CB-582B-4CBE-B295-CFC181FA9508}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45CEC5E2-54FC-4418-BDC0-A23B458092E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45CEC5E2-54FC-4418-BDC0-A23B458092E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45CEC5E2-54FC-4418-BDC0-A23B458092E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45CEC5E2-54FC-4418-BDC0-A23B458092E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F1260CB-582B-4CBE-B295-CFC181FA9508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F1260CB-582B-4CBE-B295-CFC181FA9508}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F1260CB-582B-4CBE-B295-CFC181FA9508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F1260CB-582B-4CBE-B295-CFC181FA9508}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

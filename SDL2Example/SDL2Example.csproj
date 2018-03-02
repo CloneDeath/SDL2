@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SDL2\SDL2.csproj">
+      <Project>{45CEC5E2-54FC-4418-BDC0-A23B458092E6}</Project>
+      <Name>SDL2</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
