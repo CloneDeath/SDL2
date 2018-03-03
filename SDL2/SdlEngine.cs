@@ -28,6 +28,18 @@ namespace SDL2 {
 			return new SdlWindow(window);
 		}
 
+		public bool ScreenSaverEnabled {
+			get => SdlInternal.SDL_IsScreenSaverEnabled();
+			set {
+				if (value) {
+					SdlInternal.SDL_EnableScreenSaver();
+				}
+				else {
+					SdlInternal.SDL_DisableScreenSaver();
+				}
+			}
+		}
+
 		protected virtual void ReleaseUnmanagedResources() {
 			TtfInternal.TTF_Quit();
 			ImgInternal.IMG_Quit();
