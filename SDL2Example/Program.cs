@@ -5,7 +5,10 @@ namespace SDL2Example {
 	public class Program {
 		public static void Main() {
 			using (var sdl = new SdlEngine()) {
-				Thread.Sleep(3000);
+				using (var window = sdl.CreateWindow()) {
+					window.Title = "Hello World";
+					Thread.Sleep(3000);
+				}
 			}
 //			Console.WriteLine("Hello World!");
 //			if (SdlInternal.SDL_Init(SdlInternal.SDL_INIT_EVERYTHING) != 0) {

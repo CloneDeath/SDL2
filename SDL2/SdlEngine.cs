@@ -23,7 +23,9 @@ namespace SDL2 {
 		}
 		
 		public IWindow CreateWindow() {
-			throw new System.NotImplementedException();
+			var window = SdlInternal.SDL_CreateWindow("", 0, 0, 640, 480, SDL_WindowFlags.SDL_WINDOW_HIDDEN);
+			if (window == IntPtr.Zero) throw new SdlException(nameof(SdlInternal.SDL_CreateWindow));
+			return new SdlWindow(window);
 		}
 
 		protected virtual void ReleaseUnmanagedResources() {

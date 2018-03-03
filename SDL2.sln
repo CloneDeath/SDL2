@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL2", "SDL2\SDL2.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL2Example", "SDL2Example\SDL2Example.csproj", "{1F1260CB-582B-4CBE-B295-CFC181FA9508}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL2.Tests", "SDL2.Tests\SDL2.Tests.csproj", "{C6C38F7C-5B02-4F75-975E-570182844E67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{1F1260CB-582B-4CBE-B295-CFC181FA9508}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F1260CB-582B-4CBE-B295-CFC181FA9508}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F1260CB-582B-4CBE-B295-CFC181FA9508}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6C38F7C-5B02-4F75-975E-570182844E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C38F7C-5B02-4F75-975E-570182844E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C38F7C-5B02-4F75-975E-570182844E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C38F7C-5B02-4F75-975E-570182844E67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

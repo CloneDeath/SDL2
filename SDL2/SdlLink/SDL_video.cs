@@ -9,5 +9,10 @@ namespace SDL2.SdlLink {
 		[DllImport(SdlName)]
 		public static extern void SDL_DestroyWindow(IntPtr window);
 
+		[DllImport(SdlName)]
+		public static extern void SDL_SetWindowTitle(IntPtr window, string title);
+
+		[DllImport(SdlName)]
+		public static extern string SDL_GetWindowTitle(IntPtr window);
 	}
 }
