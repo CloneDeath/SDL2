@@ -19,5 +19,7 @@ namespace SDL2 {
 		void Restore();
 		
 		WindowMode Mode { set; }
+
+		IRenderer CreateRenderer();
 	}
 }

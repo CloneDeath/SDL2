@@ -95,6 +95,13 @@ namespace SDL2 {
 			}
 		}
 
+		public IRenderer CreateRenderer() {
+			var renderer = SdlInternal.SDL_CreateRenderer(_handle, -1, SDL_RendererFlags.SDL_RENDERER_ACCELERATED 
+			                                                           | SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC);
+			if (renderer == IntPtr.Zero) throw new SdlException(nameof(SdlInternal.SDL_CreateRenderer));
+			return new SdlRenderer(renderer);
+		}
+
 		private void ReleaseUnmanagedResources() {
 			SdlInternal.SDL_DestroyWindow(_handle);
 		}
