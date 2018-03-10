@@ -11,9 +11,27 @@ namespace SDL2Example {
 					window.Title = "Hello World";
 					window.Show();
 					Thread.Sleep(1000);
+					
 					window.Size = new Size(300, 300);
 					Console.WriteLine(window.Size);
-					Thread.Sleep(2000);
+					Thread.Sleep(1000);
+
+					using (var renderer = window.CreateRenderer()) {
+						renderer.DrawColor = Color.Black;
+						renderer.Clear();
+
+						renderer.DrawColor = Color.White;
+						renderer.DrawRectangle(new Rectangle {
+							X = 10,
+							Y = 10,
+							Width = 10,
+							Height = 10
+						});
+						renderer.Present();
+
+						Console.WriteLine(renderer.DrawColor);
+						Thread.Sleep(1000);
+					}
 				}
 			}
 		}

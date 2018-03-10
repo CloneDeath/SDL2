@@ -6,7 +6,6 @@ namespace SDL2.SdlLink {
 	[Flags]
 	public enum SDL_WindowFlags : uint
 	{
-		/* !!! FIXME: change this to name = (1<<x). */
 		SDL_WINDOW_FULLSCREEN = 0x00000001,         /**< fullscreen window */
 		SDL_WINDOW_OPENGL = 0x00000002,             /**< window usable with OpenGL context */
 		SDL_WINDOW_SHOWN = 0x00000004,              /**< window is visible */

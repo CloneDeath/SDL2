@@ -11,99 +11,125 @@ namespace SDL2 {
 		}
 
 		public string Title {
-			get => SdlInternal.SDL_GetWindowTitle(_handle);
-			set => SdlInternal.SDL_SetWindowTitle(_handle, value);
+			get => Sdl.GetWindowTitle(_handle);
+			set => Sdl.SetWindowTitle(_handle, value);
 		}
 
 		public Point Position {
 			get {
-				SdlInternal.SDL_GetWindowPosition(_handle, out var x, out var y);
+				Sdl.GetWindowPosition(_handle, out var x, out var y);
 				return new Point(x, y);
 			}
-			set => SdlInternal.SDL_SetWindowPosition(_handle, value.X, value.Y);
+			set => Sdl.SetWindowPosition(_handle, value.X, value.Y);
 		}
 
 		public Size Size {
 			get {
-				SdlInternal.SDL_GetWindowSize(_handle, out var w, out var h);
+				Sdl.GetWindowSize(_handle, out var w, out var h);
 				return new Size(w, h);
 			}
-			set => SdlInternal.SDL_SetWindowSize(_handle, value.Width, value.Height);
+			set => Sdl.SetWindowSize(_handle, value.Width, value.Height);
 		}
 
 		public Size MinimumSize {
 			get {
-				SdlInternal.SDL_GetWindowMinimumSize(_handle, out var w, out var h);
+				Sdl.GetWindowMinimumSize(_handle, out var w, out var h);
 				return new Size(w, h);
 			}
-			set => SdlInternal.SDL_SetWindowMinimumSize(_handle, value.Width, value.Height);
+			set => Sdl.SetWindowMinimumSize(_handle, value.Width, value.Height);
 		}
 
 		public Size MaximumSize {
 			get {
-				SdlInternal.SDL_GetWindowMaximumSize(_handle, out var w, out var h);
+				Sdl.GetWindowMaximumSize(_handle, out var w, out var h);
 				return new Size(w, h);
 			}
-			set => SdlInternal.SDL_SetWindowMaximumSize(_handle, value.Width, value.Height);
+			set => Sdl.SetWindowMaximumSize(_handle, value.Width, value.Height);
 		}
 		
 		public bool Bordered {
-			set => SdlInternal.SDL_SetWindowBordered(_handle, value);
+			get => !Sdl.GetWindowFlags(_handle).HasFlag(SDL_WindowFlags.SDL_WINDOW_BORDERLESS);
+			set => Sdl.SetWindowBordered(_handle, value);
 		}
-		
+
 		public bool Resizable {
-			set => SdlInternal.SDL_SetWindowResizable(_handle, value);
+			get => Sdl.GetWindowFlags(_handle).HasFlag(SDL_WindowFlags.SDL_WINDOW_RESIZABLE);
+			set => Sdl.SetWindowResizable(_handle, value);
+		}
+
+		public bool Visible {
+			get => Sdl.GetWindowFlags(_handle).HasFlag(SDL_WindowFlags.SDL_WINDOW_SHOWN);
+			set {
+				if (value) {
+					Show();
+				}
+				else {
+					Hide();
+				}
+			}
 		}
 		
 		public void Show() {
-			SdlInternal.SDL_ShowWindow(_handle);
+			Sdl.ShowWindow(_handle);
 		}
 
 		public void Hide() {
-			SdlInternal.SDL_HideWindow(_handle);
+			Sdl.HideWindow(_handle);
 		}
 
 		public void Raise() {
-			SdlInternal.SDL_RaiseWindow(_handle);
+			Sdl.RaiseWindow(_handle);
 		}
 
 		public void Maximize() {
-			SdlInternal.SDL_MaximizeWindow(_handle);
+			Sdl.MaximizeWindow(_handle);
 		}
 
 		public void Minimize() {
-			SdlInternal.SDL_MinimizeWindow(_handle);
+			Sdl.MinimizeWindow(_handle);
 		}
 
 		public void Restore() {
-			SdlInternal.SDL_RestoreWindow(_handle);
+			Sdl.RestoreWindow(_handle);
 		}
 
 		public WindowMode Mode {
 			set {
 				switch (value) {
 						case WindowMode.FullScreen:
-							SdlInternal.SDL_SetWindowFullscreen(_handle, SDL_WindowFlags.SDL_WINDOW_FULLSCREEN);
+							Sdl.SetWindowFullscreen(_handle, SDL_WindowFlags.SDL_WINDOW_FULLSCREEN);
 							break;
 						case WindowMode.FullScreenBorderlessWindow:
-							SdlInternal.SDL_SetWindowFullscreen(_handle, SDL_WindowFlags.SDL_WINDOW_FULLSCREEN_DESKTOP);
+							Sdl.SetWindowFullscreen(_handle, SDL_WindowFlags.SDL_WINDOW_FULLSCREEN_DESKTOP);
 							break;
 						case WindowMode.Window:
-							SdlInternal.SDL_SetWindowFullscreen(_handle, 0);
+							Sdl.SetWindowFullscreen(_handle, 0);
 							break;
 				}
 			}
 		}
 
 		public IRenderer CreateRenderer() {
-			var renderer = SdlInternal.SDL_CreateRenderer(_handle, -1, SDL_RendererFlags.SDL_RENDERER_ACCELERATED 
+			var renderer = Sdl.CreateRenderer(_handle, -1, SDL_RendererFlags.SDL_RENDERER_ACCELERATED 
 			                                                           | SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC);
-			if (renderer == IntPtr.Zero) throw new SdlException(nameof(SdlInternal.SDL_CreateRenderer));
+			if (renderer == IntPtr.Zero) throw new SdlException(nameof(Sdl.CreateRenderer));
 			return new SdlRenderer(renderer);
 		}
 
+		public ISurface Surface {
+			get {
+				var surface = Sdl.GetWindowSurface(_handle);
+				if (surface == IntPtr.Zero) throw new SdlException("SDL_GetWindowSurface");
+				return new SdlSurfaceReference(surface);
+			}
+		}
+
+		public void UpdateWindowSurface() {
+			if (Sdl.UpdateWindowSurface(_handle) != 0) throw new SdlException(nameof(Sdl.UpdateWindowSurface));
+		}
+
 		private void ReleaseUnmanagedResources() {
-			SdlInternal.SDL_DestroyWindow(_handle);
+			Sdl.DestroyWindow(_handle);
 		}
 
 		#region Dispose

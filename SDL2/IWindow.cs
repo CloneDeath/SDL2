@@ -8,11 +8,13 @@ namespace SDL2 {
 		Size Size { get; set; }
 		Size MinimumSize { get; set; }
 		Size MaximumSize { get; set; }
-		bool Bordered { set; }
-		bool Resizable { set; }
-
+		bool Bordered { get; set; }
+		bool Resizable { get; set; }
+		
+		bool Visible { get; set; }
 		void Show();
 		void Hide();
+		
 		void Raise();
 		void Maximize();
 		void Minimize();
@@ -21,5 +23,8 @@ namespace SDL2 {
 		WindowMode Mode { set; }
 
 		IRenderer CreateRenderer();
+		
+		ISurface Surface { get; }
+		void UpdateWindowSurface();
 	}
 }

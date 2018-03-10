@@ -4,7 +4,7 @@
 
 namespace SDL2.SdlLink
 {
-    public static partial class SdlInternal {
+    public static partial class Sdl {
 	    public const string SdlName = "SDL2";
 
         public const uint SDL_INIT_TIMER = 0x00000001u;
