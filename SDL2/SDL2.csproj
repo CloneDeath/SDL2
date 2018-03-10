@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Version>1.0</Version>
+    <PackageId>SDL2.DotNetCore</PackageId>
     <PackageIconUrl>https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Sdl-logo.png/220px-Sdl-logo.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/CloneDeath/SDL2</PackageProjectUrl>
   </PropertyGroup>
