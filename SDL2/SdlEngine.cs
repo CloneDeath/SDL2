@@ -1,4 +1,5 @@
 ﻿using System;
+using SDL2.Events;
 using SDL2.SdlImageLink;
 using SDL2.SdlLink;
 using SDL2.SdlTtfLink;
@@ -46,6 +47,15 @@ namespace SDL2 {
 					Sdl.DisableScreenSaver();
 				}
 			}
+		}
+
+		public void Delay(TimeSpan amount) {
+			Sdl.Delay((uint)amount.TotalMilliseconds);
+		}
+
+		public IEvent PollEvent() {
+			var sdlEvent = Sdl.PollEvent();
+			return sdlEvent == null ? null : new SdlEvent(sdlEvent);
 		}
 
 		protected virtual void ReleaseUnmanagedResources() {
