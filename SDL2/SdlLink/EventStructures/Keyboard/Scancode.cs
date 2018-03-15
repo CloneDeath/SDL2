@@ -354,7 +354,7 @@
 		/* @{ */
 	
 		AudioRewind = 285,
-		AudioFastForward = 286,
+		AudioFastForward = 286
 	
 		/* @} *//* Usage page 0x0C (additional media keys) */
 	}

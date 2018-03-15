@@ -115,6 +115,6 @@ namespace SDL2 {
 		/** Events ::SDL_USEREVENT through ::SDL_LASTEVENT are for your use,
 		 *  and should be allocated with SDL_RegisterEvents()
 		 */
-		UserEvent = (int)SDL_EventType.SDL_USEREVENT,
+		UserEvent = (int)SDL_EventType.SDL_USEREVENT
 	}
 }

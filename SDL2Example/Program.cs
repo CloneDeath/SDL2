@@ -24,9 +24,10 @@ namespace SDL2Example {
 		}
 
 		private static void MainLoop(IRenderer renderer, IEngine sdl) {
-			bool keepRunning = true;
+			var keepRunning = true;
 			while (keepRunning) {
 				for (var evt = sdl.PollEvent(); evt != null; evt = sdl.PollEvent()) {
+					// ReSharper disable once SwitchStatementMissingSomeCases
 					switch (evt.Type) {
 						case EventType.Quit:
 							keepRunning = false;

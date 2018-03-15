@@ -62,6 +62,7 @@ namespace SDL2 {
 
 			var sdlColor = Sdl.MapRgba(Surface.format, color.R, color.G, color.B, color.A);
 
+			// ReSharper disable once SwitchStatementMissingSomeCases
 			switch(bytesPerPixel) {
 				case 1: 
 					Marshal.WriteByte(pixel, (byte) sdlColor);

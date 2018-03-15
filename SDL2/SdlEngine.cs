@@ -16,6 +16,7 @@ namespace SDL2 {
 				throw new SdlException(nameof(Img.Init));
 			}
 			
+			// ReSharper disable once InvertIf
 			if (Ttf.Init() != 0){
 				Img.Quit();
 				Sdl.SDL_Quit();

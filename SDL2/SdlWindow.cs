@@ -96,15 +96,16 @@ namespace SDL2 {
 		public WindowMode Mode {
 			set {
 				switch (value) {
-						case WindowMode.FullScreen:
-							Sdl.SetWindowFullscreen(_handle, SDL_WindowFlags.SDL_WINDOW_FULLSCREEN);
-							break;
-						case WindowMode.FullScreenBorderlessWindow:
-							Sdl.SetWindowFullscreen(_handle, SDL_WindowFlags.SDL_WINDOW_FULLSCREEN_DESKTOP);
-							break;
-						case WindowMode.Window:
-							Sdl.SetWindowFullscreen(_handle, 0);
-							break;
+					case WindowMode.FullScreen:
+						Sdl.SetWindowFullscreen(_handle, SDL_WindowFlags.SDL_WINDOW_FULLSCREEN);
+						break;
+					case WindowMode.FullScreenBorderlessWindow:
+						Sdl.SetWindowFullscreen(_handle, SDL_WindowFlags.SDL_WINDOW_FULLSCREEN_DESKTOP);
+						break;
+					case WindowMode.Window:
+						Sdl.SetWindowFullscreen(_handle, 0);
+						break;
+					default: throw new ArgumentOutOfRangeException(nameof(value), value, null);
 				}
 			}
 		}
