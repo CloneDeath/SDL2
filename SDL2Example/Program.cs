@@ -32,7 +32,19 @@ namespace SDL2Example {
 							keepRunning = false;
 							break;
 						case EventType.KeyDown:
-							Console.WriteLine(evt.Key.KeySymbol);
+							Console.WriteLine(evt.Key.KeySymbol.Symbol);
+							break;
+						case EventType.KeyUp:
+							Console.WriteLine("-" + evt.Key.KeySymbol.Symbol);
+							break;
+						case EventType.MouseMotion:
+							Console.WriteLine(evt.Motion.DeltaX);
+							break;
+						case EventType.MouseButtonDown:
+							Console.WriteLine(evt.Button.Button + " " + evt.Button.Clicks);
+							break;
+						case EventType.MouseWheel:
+							Console.WriteLine(evt.Wheel.Y);
 							break;
 					}
 				}
@@ -48,7 +60,7 @@ namespace SDL2Example {
 				});
 				renderer.Present();
 
-				sdl.Delay(TimeSpan.FromSeconds(1));
+				sdl.Delay(TimeSpan.FromSeconds(1/60d));
 			}
 		}
 	}
