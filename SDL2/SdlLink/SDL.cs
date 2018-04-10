@@ -18,10 +18,12 @@ namespace SDL2.SdlLink
 	    public const uint SDL_INIT_EVERYTHING = SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS |
 	                                            SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC | SDL_INIT_GAMECONTROLLER;
 	    
-        [DllImport(SdlName)]
-        public static extern int SDL_Init(uint flags);
+        [DllImport(SdlName, EntryPoint = "SDL_Init")]
+        public static extern int Init(uint flags);
         
-        [DllImport(SdlName)]
-        public static extern void SDL_Quit();
+        [DllImport(SdlName, EntryPoint = "SDL_Quit")]
+        public static extern void Quit();
+	    
+	    
     }
 }

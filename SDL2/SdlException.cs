@@ -8,7 +8,7 @@ namespace SDL2 {
 		
 		public SdlException(string functionName) {
 			FunctionName = functionName;
-			ErrorMessage = Sdl.SDL_GetError();
+			ErrorMessage = Sdl.GetError();
 		}
 
 		public override string Message => $"{FunctionName}: {ErrorMessage}";

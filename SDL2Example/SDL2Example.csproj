@@ -5,9 +5,9 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SDL2\SDL2.csproj">
-      <Project>{45CEC5E2-54FC-4418-BDC0-A23B458092E6}</Project>
-      <Name>SDL2</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\SDL2\SDL2.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BetterPixels.ttf" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using SDL2.SdlImageLink;
 using SDL2.SdlLink;
 using SDL2.SdlTtfLink;
@@ -94,6 +95,22 @@ namespace SDL2 {
 			var texture = Sdl.CreateTextureFromSurface(_handle, ((SdlSurface) surface).Handle);
 			if (texture == IntPtr.Zero) throw new SdlException(nameof(Sdl.CreateTextureFromSurface));
 			return new SdlTexture(texture);
+		}
+
+		public IFont OpenFont(Stream fontStream, int fontSize) {
+			using (var br = new BinaryReader(fontStream)) {
+				var bytes = br.ReadBytes((int)fontStream.Length);
+				var fontData = Sdl.RWFromMem(bytes);
+				var font = Ttf.OpenFontRW(fontData, 1, fontSize);
+				if (font == IntPtr.Zero) {
+					fontData.Dispose();
+					throw new SdlException("TTF_OpenFontRW");
+				}
+				
+				var sdlFont = new SdlFontWithResources(font);
+				sdlFont.AddResources(fontData);
+				return sdlFont;
+			}
 		}
 
 		public IFont OpenFont(string fontPath, int fontSize) {

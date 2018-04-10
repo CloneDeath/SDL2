@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using SDL2.SdlLink;
+using SDL2.SdlLink.RWMemoryInfo;
+// ReSharper disable InconsistentNaming
 
 namespace SDL2.SdlTtfLink {
 	public static class Ttf {
@@ -44,5 +46,12 @@ namespace SDL2.SdlTtfLink {
 		
 		[DllImport(TtfName, EntryPoint = "TTF_SetFontOutline")]
 		public static extern void SetFontOutline(IntPtr font, int outline);
+		
+		[DllImport(TtfName, EntryPoint = "TTF_OpenFontRW")]
+		public static extern IntPtr OpenFontRW(IntPtr src, int freesrc, int ptsize);
+
+		public static IntPtr OpenFontRW(IMemory memory, int freesrc, int ptsize) {
+			return OpenFontRW(memory.SdlRwPtr, freesrc, ptsize);
+		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 
 namespace SDL2 {
 	public interface IRenderer : IDisposable {
@@ -18,6 +19,7 @@ namespace SDL2 {
 		void Present();
 		ITexture LoadTexture(string filePath);
 		ITexture CreateTexture(ISurface surface);
+		IFont OpenFont(Stream font, int fontSize);
 		IFont OpenFont(string fontPath, int fontSize);
 
 		Color DrawColor { get; set; }

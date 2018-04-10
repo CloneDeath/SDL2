@@ -7,19 +7,19 @@ using SDL2.SdlTtfLink;
 namespace SDL2 {
 	public class SdlEngine : IEngine {
 		public SdlEngine() {
-			if (Sdl.SDL_Init(Sdl.SDL_INIT_EVERYTHING) != 0) {
-				throw new SdlException(nameof(Sdl.SDL_Init));
+			if (Sdl.Init(Sdl.SDL_INIT_EVERYTHING) != 0) {
+				throw new SdlException(nameof(Sdl.Init));
 			}
 
 			if (Img.Init(IMG_InitFlags.IMG_INIT_PNG) == 0) {
-				Sdl.SDL_Quit();
+				Sdl.Quit();
 				throw new SdlException(nameof(Img.Init));
 			}
 			
 			// ReSharper disable once InvertIf
 			if (Ttf.Init() != 0){
 				Img.Quit();
-				Sdl.SDL_Quit();
+				Sdl.Quit();
 				throw new SdlException(nameof(Ttf.Init));
 			}
 		}
@@ -62,7 +62,7 @@ namespace SDL2 {
 		protected virtual void ReleaseUnmanagedResources() {
 			Ttf.Quit();
 			Img.Quit();
-			Sdl.SDL_Quit();
+			Sdl.Quit();
 		}
 		
 		#region Dispose
