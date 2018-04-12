@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using SDL2.SdlLink;
 
 namespace SDL2 {
 	public interface IRenderer : IDisposable {

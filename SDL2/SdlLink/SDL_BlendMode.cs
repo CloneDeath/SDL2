@@ -27,6 +27,6 @@
 		/// dstRGB = srcRGB * dstRGB
 		/// dstA = dstA
 		/// </summary>
-		ColorModulate = 0x00000004,
+		ColorModulate = 0x00000004
 	}
 }
