@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using SDL2;
+using SDL2.SdlLink;
 
 namespace SDL2Example {
 	public class Program {
@@ -10,12 +11,8 @@ namespace SDL2Example {
 			using (var sdl = new SdlEngine())
 			using (var window = sdl.CreateWindow()) {
 				window.Title = "Hello World";
-				window.Show();
-				sdl.Delay(TimeSpan.FromSeconds(1));
-
 				window.Size = new Size(300, 300);
-				Console.WriteLine(window.Size);
-				sdl.Delay(TimeSpan.FromSeconds(1));
+				window.Show();
 
 				using (var renderer = window.CreateRenderer())
 				using (var fontStream = GetFontStream())
@@ -24,10 +21,18 @@ namespace SDL2Example {
 				}
 			}
 		}
+		
+		private static Stream GetEmbeddedResource(string resourceName) {
+			var assembly = Assembly.GetExecutingAssembly();
+			return assembly.GetManifestResourceStream($"{nameof(SDL2Example)}.{resourceName}");
+		}
 
 		private static Stream GetFontStream() {
-			var assembly = Assembly.GetExecutingAssembly();
-			return assembly.GetManifestResourceStream($"{nameof(SDL2Example)}.BetterPixels.ttf");
+			return GetEmbeddedResource("BetterPixels.ttf");
+		}
+		
+		private static Stream GetGiraffeStream() {
+			return GetEmbeddedResource("giraffe.png");
 		}
 
 		private static void MainLoop(IRenderer renderer, IFont font, IEngine sdl) {
@@ -77,6 +82,14 @@ namespace SDL2Example {
 				{
 					renderer.DrawTexture(messageTexture, new Point(0, 50));
 				}
+				
+				using (var giraffeTextureStream = GetGiraffeStream())
+				using (var giraffeTexture = renderer.LoadTexture(giraffeTextureStream)) {
+					giraffeTexture.BlendMode = SDL_BlendMode.Alpha;
+					giraffeTexture.DrawColor = Color.FromArgb(127, 31, 31, 255);
+					renderer.DrawTexture(giraffeTexture, new Point(0, 100));
+				}
+				
 				renderer.Present();
 
 				sdl.Delay(TimeSpan.FromSeconds(1/60d));

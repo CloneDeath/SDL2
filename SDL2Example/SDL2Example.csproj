@@ -9,5 +9,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BetterPixels.ttf" />
+    <EmbeddedResource Include="giraffe.png" />
   </ItemGroup>
 </Project>

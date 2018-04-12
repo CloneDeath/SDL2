@@ -13,5 +13,8 @@ namespace SDL2.SdlImageLink {
 		
 		[DllImport(ImgName, EntryPoint = "IMG_LoadTexture")]
 		public static extern IntPtr LoadTexture(IntPtr renderer, string file);
+		
+		[DllImport(ImgName, EntryPoint = "IMG_LoadTexture_RW")]
+		public static extern IntPtr LoadTextureRw(IntPtr renderer, IntPtr src, int freesrc);
 	}
 }

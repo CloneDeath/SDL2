@@ -91,6 +91,21 @@ namespace SDL2 {
 			return new SdlTexture(texture);
 		}
 
+		public ITexture LoadTexture(Stream fileStream) {
+			using (var br = new BinaryReader(fileStream)) {
+				var data = br.ReadBytes((int)fileStream.Length);
+				var textureDataPointer = Sdl.RWFromMem(data);
+				var texturePointer = Img.LoadTextureRw(_handle, textureDataPointer.SdlRwPtr, 0);
+				if (texturePointer == IntPtr.Zero) {
+					textureDataPointer.Dispose();
+					throw new SdlException(nameof(Img.LoadTextureRw));
+				}
+				var texture = new SdlTextureWithResources(texturePointer);
+				texture.AddResources(textureDataPointer);
+				return texture;
+			}
+		}
+
 		public ITexture CreateTexture(ISurface surface) {
 			var texture = Sdl.CreateTextureFromSurface(_handle, ((SdlSurface) surface).Handle);
 			if (texture == IntPtr.Zero) throw new SdlException(nameof(Sdl.CreateTextureFromSurface));
@@ -101,7 +116,7 @@ namespace SDL2 {
 			using (var br = new BinaryReader(fontStream)) {
 				var bytes = br.ReadBytes((int)fontStream.Length);
 				var fontData = Sdl.RWFromMem(bytes);
-				var font = Ttf.OpenFontRW(fontData, 1, fontSize);
+				var font = Ttf.OpenFontRW(fontData, 0, fontSize);
 				if (font == IntPtr.Zero) {
 					fontData.Dispose();
 					throw new SdlException("TTF_OpenFontRW");

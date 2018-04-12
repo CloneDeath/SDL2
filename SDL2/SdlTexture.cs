@@ -18,6 +18,31 @@ namespace SDL2 {
 			}
 		}
 
+		public Color DrawColor {
+			get {
+				if (Sdl.GetTextureColorMod(Handle, out var r, out var g, out var b) != 0) {
+					throw new SdlException(nameof(Sdl.GetTextureColorMod));
+				}
+
+				if (Sdl.GetTextureAlphaMod(Handle, out var a) != 0) {
+					throw new SdlException(nameof(Sdl.GetTextureAlphaMod));
+				}
+				return Color.FromArgb(a, r, g, b);
+			}
+			set {
+				Sdl.SetTextureColorMod(Handle, value.R, value.G, value.B);
+				Sdl.SetTextureAlphaMod(Handle, value.A);
+			}
+		}
+
+		public SDL_BlendMode BlendMode {
+			get {
+				Sdl.GetTextureBlendMode(Handle, out var blendMode);
+				return blendMode;
+			}
+			set => Sdl.SetTextureBlendMode(Handle, value);
+		}
+
 		private void ReleaseUnmanagedResources() {
 			Sdl.DestroyTexture(Handle);
 		}

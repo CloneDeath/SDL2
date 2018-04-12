@@ -110,5 +110,23 @@ namespace SDL2.SdlLink {
 		
 		[DllImport(SdlName, EntryPoint = "SDL_DestroyRenderer")]
 		public static extern void DestroyRenderer(IntPtr renderer);
+		
+		[DllImport(SdlName, EntryPoint = "SDL_SetTextureColorMod")]
+		public static extern int SetTextureColorMod(IntPtr texture, byte r, byte g, byte b);
+		
+		[DllImport(SdlName, EntryPoint = "SDL_GetTextureColorMod")]
+		public static extern int GetTextureColorMod(IntPtr texture, out byte r, out byte g, out byte b);
+		
+		[DllImport(SdlName, EntryPoint = "SDL_SetTextureAlphaMod")]
+		public static extern int SetTextureAlphaMod(IntPtr texture, byte alpha);
+		
+		[DllImport(SdlName, EntryPoint = "SDL_GetTextureAlphaMod")]
+		public static extern int GetTextureAlphaMod(IntPtr texture, out byte alpha);
+		
+		[DllImport(SdlName, EntryPoint = "SDL_SetTextureBlendMode")]
+		public static extern int SetTextureBlendMode(IntPtr texture, SDL_BlendMode blendMode);
+		
+		[DllImport(SdlName, EntryPoint = "SDL_GetTextureBlendMode")]
+		public static extern int GetTextureBlendMode(IntPtr texture, out SDL_BlendMode blendMode);
 	}
 }
